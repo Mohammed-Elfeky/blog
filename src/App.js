@@ -9,13 +9,20 @@ import SignIn from './components/signIn'
 import SignUp from './components/signUp'
 import Nav from './components/nav'
 import User from './components/user'
-import ProjectDetails from './components/projectDetails'
 import {changeUserState} from './authActions'
-class App extends Component {
 
+class App extends Component {
+  // constructor(){
+  //   super();
+  //   console.log(this.props.user)
+  // }
+  
+  componentDidUpdate(){
+    console.log(this.props.user)
+  }
 
   componentDidMount(){
-
+    console.log(this.props.user)
     db.collection("projects")
     .onSnapshot(docs=> {
 
@@ -37,7 +44,6 @@ class App extends Component {
           if (doc.exists) {
               this.props.changeUserState({
                 ...doc.data(),
-                email:user.email,
                 uid:user.uid
               })
           } else {
@@ -55,6 +61,8 @@ class App extends Component {
       } else {
         this.props.changeUserState(null)
       }
+
+      
     });
 
     
@@ -79,7 +87,6 @@ class App extends Component {
           <Route path="/signin" component={SignIn} />
           <Route path="/signUp" component={SignUp}/>
           <Route path="/create" component={Create} />
-          <Route path="/details/:id" component={ProjectDetails}/>
           <Route path="/user/:id" component={User}/>
         </Switch>
       </div>
@@ -89,6 +96,12 @@ class App extends Component {
 
 }
 
+const mapStateToProps=(state)=>{
+  return{
+      user:state.authReducer.user
+  }
+}
+
 
 const mapDispatchToProps = dispatch => {
   return {
@@ -96,4 +109,4 @@ const mapDispatchToProps = dispatch => {
     changeUserState: (user)=> dispatch(changeUserState(user))
   }
 }
-export default connect(null,mapDispatchToProps)(App)
+export default connect(mapStateToProps,mapDispatchToProps)(App)
