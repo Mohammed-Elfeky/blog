@@ -1,0 +1,26 @@
+.commentsContainer{
+    max-height: 500px;
+    overflow: auto;
+    margin: 10px 0;
+}
+.commentForm input{
+    border: none;
+    border-bottom: 2px solid gray;
+    background: transparent;
+    width: 100%;
+    position: absolute;
+    bottom: 2%;
+    width: 80%;
+}
+.commentForm input:focus{
+    outline-width: 0;
+    border-bottom: 2px solid black;
+}
+.post{
+    position: relative;
+    padding: 20px;
+    padding-bottom: 30px;
+    margin-bottom: 10px;
+    border: 1px solid gray;
+    border-radius: 20px;
+}

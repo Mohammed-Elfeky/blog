@@ -1,15 +1,16 @@
 import React, { Component } from 'react'
-import {getProjects} from './action'
+import {getPosts} from './redux/actions/databaseActions'
+import {changeUserState} from './redux/actions/authActions'
 import {connect} from 'react-redux' 
-import {db,auth} from './firebase'
+import {db,auth} from './firebase/firebase'
 import {Switch,Route} from 'react-router-dom'
-import Dashboard from './components/dashboard'
-import Create from './components/create'
-import SignIn from './components/signIn'
-import SignUp from './components/signUp'
-import Nav from './components/nav'
-import User from './components/user'
-import {changeUserState} from './authActions'
+import Dashboard from './components/dashboard/dashboard'
+import Create from './components/create/create'
+import SignIn from './components/signIn/signIn'
+import SignUp from './components/signUp/signUp'
+import Nav from './components/nav/nav'
+import User from './components/user/user'
+
 
 class App extends Component {
   // constructor(){
@@ -26,12 +27,12 @@ class App extends Component {
     db.collection("projects")
     .onSnapshot(docs=> {
 
-      let projectsToSend=[]
+      let postsToSend=[]
       docs.forEach(ele=>{
-        projectsToSend.push({id:ele.id ,data:ele.data()}) 
+        postsToSend.push({id:ele.id ,data:ele.data()}) 
       })
 
-      this.props.getProjects(projectsToSend)
+      this.props.getPosts(postsToSend)
 
     });
 
@@ -105,7 +106,7 @@ const mapStateToProps=(state)=>{
 
 const mapDispatchToProps = dispatch => {
   return {
-    getProjects: (projects)=> dispatch(getProjects(projects)),
+    getPosts: (projects)=> dispatch(getPosts(projects)),
     changeUserState: (user)=> dispatch(changeUserState(user))
   }
 }
