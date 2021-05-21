@@ -51,14 +51,14 @@ class ShowPosts extends Component {
 
                                     <div className={style.commentsContainer}>
                                         {
-                                            ele.data.comments && ele.data.comments.map(comment=>{
-                                                return <Comment comment={comment} />
+                                            ele.data.comments && ele.data.comments.map((comment,index)=>{
+                                                return <Comment key={index} comment={comment} />
                                             })
                                         }
                                         
                                     </div>
 
-                                    <div class={style.commentForm}>
+                                    <div className={style.commentForm}>
                                         <form onSubmit={(e)=>{this.handleSubmit(e,ele.id)}}>
                                             <input onChange={this.handleChange} type="text" placeholder="Comment Here"/>
                                         </form>

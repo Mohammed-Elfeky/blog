@@ -44,20 +44,20 @@ class SignUp extends Component {
                   <div className={`${style.item} p-5 mt-5`}>
                     <h3 className="text-capitalize mb-5" >sign up</h3>
 
-                    <div class="input-group mb-3">
-                    <input onChange={this.handleChange} autocomplete="off" name="firstName" type="text" class="form-control" placeholder="first name" aria-label="Username" aria-describedby="basic-addon1"/>
+                    <div className="input-group mb-3">
+                    <input onChange={this.handleChange} autoComplete="off" name="firstName" type="text" className="form-control" placeholder="first name" aria-label="Username" aria-describedby="basic-addon1"/>
                     </div>
 
-                    <div class="input-group mb-3">
-                    <input onChange={this.handleChange} autocomplete="off" name="lastName" type="text" class="form-control" placeholder="last name" aria-label="Username" aria-describedby="basic-addon1"/>
+                    <div className="input-group mb-3">
+                    <input onChange={this.handleChange} autoComplete="off" name="lastName" type="text" className="form-control" placeholder="last name" aria-label="Username" aria-describedby="basic-addon1"/>
                     </div>
 
-                    <div class="input-group mb-3">
-                    <input onChange={this.handleChange} autocomplete="off" name="email" type="text" class="form-control" placeholder="Email" aria-label="Username" aria-describedby="basic-addon1"/>
+                    <div className="input-group mb-3">
+                    <input onChange={this.handleChange} autoComplete="off" name="email" type="text" className="form-control" placeholder="Email" aria-label="Username" aria-describedby="basic-addon1"/>
                     </div>
 
-                    <div class="input-group mb-3">
-                    <input onChange={this.handleChange} name="password" type="password" class="form-control" placeholder="Password" aria-label="Username" aria-describedby="basic-addon1"/>
+                    <div className="input-group mb-3">
+                    <input onChange={this.handleChange} name="password" type="password" className="form-control" placeholder="Password" aria-label="Username" aria-describedby="basic-addon1"/>
                     </div>
 
                     {

@@ -3,6 +3,7 @@ import style from './create.module.css'
 import {db} from '../../firebase/firebase'
 import {connect} from 'react-redux'
 import {Redirect} from 'react-router-dom'
+import firebase from 'firebase'
 class Create extends Component {
     createObj={
         content:''
@@ -15,6 +16,7 @@ class Create extends Component {
     handleClick=()=>{
         // Add a new document with a generated id.
         db.collection("projects").add({
+            timestamp:firebase.firestore.FieldValue.serverTimestamp(),
             content: this.createObj.content,
             firstName:this.props.user.firstName,
             lastName:this.props.user.lastName,
@@ -26,7 +28,6 @@ class Create extends Component {
             comments:[]
         })
         .then((docRef)=> {
-            console.log("Document written with ID: ", docRef.id);
             this.props.history.push('/')
         })
         .catch((error)=> {
@@ -42,7 +43,7 @@ class Create extends Component {
                   <div className={`${style.item} p-5 mt-5`}>
                     <h3 className="text-capitalize mb-5" >create project</h3>
 
-                    <div class="input-group mb-3">
+                    <div className="input-group mb-3">
                         <textarea name="content" onChange={this.handleChange} class="form-control" aria-label="With textarea"></textarea>
                     </div>
 

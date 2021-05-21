@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import {getPosts} from './redux/actions/databaseActions'
-import {changeUserState} from './redux/actions/authActions'
+import {changeUserState,
+        dealingWithIsLoadingState} from './redux/actions/authActions'
 import {connect} from 'react-redux' 
 import {db,auth} from './firebase/firebase'
 import {Switch,Route} from 'react-router-dom'
@@ -12,19 +13,13 @@ import Nav from './components/nav/nav'
 import User from './components/user/user'
 
 
+
 class App extends Component {
-  // constructor(){
-  //   super();
-  //   console.log(this.props.user)
-  // }
-  
-  componentDidUpdate(){
-    console.log(this.props.user)
-  }
+ 
 
   componentDidMount(){
-    console.log(this.props.user)
     db.collection("projects")
+    .orderBy('timestamp','desc')
     .onSnapshot(docs=> {
 
       let postsToSend=[]
@@ -38,21 +33,19 @@ class App extends Component {
 
     auth.onAuthStateChanged((user)=> {
 
-
+      
       if (user) {
-
+        
         db.collection('users').doc(user.uid).get().then((doc) => {
           if (doc.exists) {
               this.props.changeUserState({
                 ...doc.data(),
                 uid:user.uid
               })
-          } else {
-              // doc.data() will be undefined in this case
-              console.log("No such document!");
           }
+        
       }).catch((error) => {
-          console.log("Error getting document:", error);
+          console.log(error);
       });
 
 
@@ -99,7 +92,8 @@ class App extends Component {
 
 const mapStateToProps=(state)=>{
   return{
-      user:state.authReducer.user
+      user:state.authReducer.user,
+      isLoading:state.authReducer.isLoading
   }
 }
 
@@ -107,7 +101,8 @@ const mapStateToProps=(state)=>{
 const mapDispatchToProps = dispatch => {
   return {
     getPosts: (projects)=> dispatch(getPosts(projects)),
-    changeUserState: (user)=> dispatch(changeUserState(user))
+    changeUserState: (user)=> dispatch(changeUserState(user)),
+    dealingWithIsLoadingState:(data)=>dispatch(dealingWithIsLoadingState(data))
   }
 }
 export default connect(mapStateToProps,mapDispatchToProps)(App)

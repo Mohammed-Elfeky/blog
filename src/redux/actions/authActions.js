@@ -75,3 +75,14 @@ export const setNameError = (errorMessage) => {
   }
 
 }
+
+export const dealingWithIsLoadingState = (data) => {
+
+  return (dispatch) => {
+    dispatch({
+      type:'CHANGE_ISLOADING_STATE',
+      data
+    })
+  }
+
+}

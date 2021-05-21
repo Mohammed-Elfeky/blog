@@ -22,12 +22,12 @@ class SignIn extends Component {
                   <div className={`${style.item} p-5 mt-5`}>
                     <h3 className="text-capitalize mb-5" >sign in</h3>
 
-                    <div class="input-group mb-3">
-                    <input autocomplete="off" name="email" onChange={this.handleChange}  type="text" class="form-control" placeholder="Email" aria-label="Username" aria-describedby="basic-addon1"/>
+                    <div className="input-group mb-3">
+                    <input autoComplete="off" name="email" onChange={this.handleChange}  type="text" className="form-control" placeholder="Email" aria-label="Username" aria-describedby="basic-addon1"/>
                     </div>
 
-                    <div class="input-group mb-3">
-                    <input name="password" onChange={this.handleChange}  type="password" class="form-control" placeholder="Password" aria-label="Username" aria-describedby="basic-addon1"/>
+                    <div className="input-group mb-3">
+                    <input name="password" onChange={this.handleChange}  type="password" className="form-control" placeholder="Password" aria-label="Username" aria-describedby="basic-addon1"/>
                     </div>
 
                     {
@@ -45,7 +45,8 @@ class SignIn extends Component {
 const mapStateToProps=(state)=>{
     return{
         error:state.authReducer.signInErorr,
-        user:state.authReducer.user
+        user:state.authReducer.user,
+        isLoading:state.authReducer.isLoading
     }
 }
 

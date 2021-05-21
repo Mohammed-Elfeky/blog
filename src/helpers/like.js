@@ -21,15 +21,13 @@ const like=(postId,user)=>{
             likes:theDocLikes,
             dislikes:theDocDislikes
         }
-        console.log(theNewObject)
-        db.collection('projects').doc(postId).set(theNewObject).then(()=>{
-            console.log('like done')
-        })
+        
+        db.collection('projects').doc(postId).set(theNewObject)
         .catch(err=>{
-            console.log("like error",err)
+            console.log(err)
         })
     }).catch(err=>{
-        console.log("getting projects error",err)
+        console.log(err)
     })
 }
 

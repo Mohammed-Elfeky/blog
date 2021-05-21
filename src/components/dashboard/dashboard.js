@@ -4,7 +4,9 @@ import {connect} from 'react-redux'
 import { Redirect } from 'react-router-dom';
 class Dashboard extends Component {
     render() {
-        if(!this.props.user){return <Redirect to="/signin" />}
+        if(!this.props.user){
+             return <Redirect to="/signin" />
+        }
             return (
                 <div>
                     <div className="container">
@@ -22,7 +24,7 @@ class Dashboard extends Component {
 }
 const mapStateToProps=(state)=>{
     return{
-        user:state.authReducer.user
+        user:state.authReducer.user,
     }
   }
   

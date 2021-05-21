@@ -2,7 +2,6 @@ import {db} from '../firebase/firebase'
 const dislike=(postId,user)=>{
     db.collection('projects').doc(postId).get().then(doc=>{
         let theDoc=doc.data()
-        console.log(theDoc)
         let theDocLikes=theDoc.likes
         let theDocDislikes=theDoc.dislikes
         if(theDocDislikes.indexOf(user.uid) !== -1){
@@ -21,15 +20,12 @@ const dislike=(postId,user)=>{
             likes:theDocLikes,
             dislikes:theDocDislikes
         }
-        console.log(theNewObject)
-        db.collection('projects').doc(postId).set(theNewObject).then(()=>{
-            console.log('like done')
-        })
+        db.collection('projects').doc(postId).set(theNewObject)
         .catch(err=>{
-            console.log("like error",err)
+            console.log(err)
         })
     }).catch(err=>{
-        console.log("getting projects error",err)
+        console.log(err)
     })
 }
 

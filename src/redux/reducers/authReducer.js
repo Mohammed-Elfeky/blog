@@ -2,6 +2,7 @@ const initialState={
     user:null,
     signUpErorr:null,
     signInErorr:null,
+    isLoading:false
 }
 export default (state = initialState, action )=>{
 
@@ -40,6 +41,13 @@ export default (state = initialState, action )=>{
         return {
             ...state,
             signInErorr:action.err.message
+        }
+        
+        case 'CHANGE_ISLOADING_STATE':
+            
+        return {
+            ...state,
+            isLoading:action.data
         }
 
         default:

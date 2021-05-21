@@ -16,13 +16,12 @@ const comment=(postId,user,commentHolder)=>{
             ...theDoc,
             comments:theComments
         }
-        db.collection('projects').doc(postId).set(theCommentObject).then(()=>{
-            console.log("comment added")
-        }).catch(err=>{
-            console.log('comment adding failed',err)
+        db.collection('projects').doc(postId).set(theCommentObject)
+        .catch(err=>{
+            console.log(err)
         })
     }).catch(err=>{
-        console.log('getting post error',err)
+        console.log(err)
     })
 }
 
